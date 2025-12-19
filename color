@@ -1,0 +1,3443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color & Ideas For Advertising</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b35;
+            --secondary: #004e89;
+            --accent: #f7c548;
+            --dark: #1a1a2e;
+            --light: #ffffff;
+            --gradient1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: var(--dark);
+        }
+
+        /* Page System */
+        .page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+
+        .loader::before,
+        .loader::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            animation: rotate 1.5s linear infinite;
+        }
+
+        .loader::before {
+            border-top-color: var(--primary);
+            animation-delay: 0.1s;
+        }
+
+        .loader::after {
+            border-bottom-color: var(--accent);
+            width: 70px;
+            height: 70px;
+            top: 15px;
+            left: 15px;
+            animation-direction: reverse;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient2);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            color: white;
+            transform: rotate(-5deg);
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--light);
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient2);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-contact {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-call {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-call:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .btn-whatsapp {
+            background: #25d366;
+            color: white;
+            border: none;
+        }
+
+        .btn-whatsapp:hover {
+            background: #128c7e;
+            transform: scale(1.05);
+        }
+
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: var(--light);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(26, 26, 46, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .animated-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape1 {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient1);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            width: 300px;
+            height: 300px;
+            background: var(--gradient2);
+            bottom: -50px;
+            left: -50px;
+            animation-delay: -5s;
+        }
+
+        .shape3 {
+            width: 200px;
+            height: 200px;
+            background: var(--gradient3);
+            top: 50%;
+            left: 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, 50px) rotate(90deg); }
+            50% { transform: translate(0, 100px) rotate(180deg); }
+            75% { transform: translate(-50px, 50px) rotate(270deg); }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text h2 {
+            font-size: 18px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            color: var(--light);
+            line-height: 1.1;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero-text h1 span {
+            background: var(--gradient2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: #b0b0b0;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .hero-btn {
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: var(--gradient2);
+            color: white;
+            box-shadow: 0 20px 40px rgba(245, 87, 108, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 50px rgba(245, 87, 108, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--light);
+            color: var(--light);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Slideshow */
+        .hero-slideshow {
+            position: relative;
+            height: 500px;
+            perspective: 1000px;
+            animation: fadeInUp 1s ease 0.8s backwards;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all 0.8s ease;
+            transform: rotateY(90deg) scale(0.8);
+            cursor: pointer;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: rotateY(0) scale(1);
+        }
+
+        .slide-card {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #2a2a4a, #1a1a2e);
+            border-radius: 30px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+
+        .slide:nth-child(1) .slide-card::before {
+            background: var(--gradient1);
+        }
+
+        .slide:nth-child(2) .slide-card::before {
+            background: var(--gradient2);
+        }
+
+        .slide:nth-child(3) .slide-card::before {
+            background: var(--gradient3);
+        }
+
+        .slide:nth-child(4) .slide-card::before {
+            background: var(--gradient4);
+        }
+
+        .slide-image {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 80px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-image::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .slide-info {
+            text-align: center;
+        }
+
+        .slide-info h3 {
+            font-size: 28px;
+            color: var(--light);
+            margin-bottom: 10px;
+        }
+
+        .slide-info p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .view-designs-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: var(--gradient2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .view-designs-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+        }
+
+        /* Slide Navigation */
+        .slide-nav {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+
+        .slide-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .slide-dot.active {
+            background: var(--gradient2);
+            transform: scale(1.3);
+        }
+
+        .slide-arrows {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 -50px;
+            transform: translateY(-50%);
+        }
+
+        .slide-arrow {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-arrow:hover {
+            background: var(--gradient2);
+            transform: scale(1.1);
+        }
+
+        .arrow-left {
+            margin-left: -70px;
+        }
+
+        .arrow-right {
+            margin-right: -70px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 120px 50px;
+            background: linear-gradient(180deg, var(--dark) 0%, #16162d 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            color: var(--light);
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 span {
+            background: var(--gradient2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: #888;
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #2a2a4a, #1a1a2e);
+            border-radius: 25px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 25px;
+            border-radius: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 45px;
+            color: white;
+            position: relative;
+        }
+
+        .service-card:nth-child(1) .service-icon {
+            background: var(--gradient1);
+        }
+
+        .service-card:nth-child(2) .service-icon {
+            background: var(--gradient2);
+        }
+
+        .service-card:nth-child(3) .service-icon {
+            background: var(--gradient3);
+        }
+
+        .service-card:nth-child(4) .service-icon {
+            background: var(--gradient4);
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            color: var(--light);
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.3s;
+        }
+
+        .service-link:hover {
+            gap: 15px;
+        }
+
+        /* Statistics */
+        .stats {
+            padding: 80px 50px;
+            background: var(--gradient1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 56px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 120px 50px;
+            background: linear-gradient(135deg, #16162d 0%, var(--dark) 100%);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: var(--light);
+            margin-bottom: 30px;
+        }
+
+        .cta p {
+            color: #888;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .cta-btn {
+            padding: 20px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cta-whatsapp {
+            background: #25d366;
+            color: white;
+        }
+
+        .cta-whatsapp:hover {
+            background: #128c7e;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
+        }
+
+        .cta-call {
+            background: var(--gradient2);
+            color: white;
+        }
+
+        .cta-call:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(245, 87, 108, 0.4);
+        }
+
+        /* Floating WhatsApp Button */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 35px;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        /* ============================================
+           CATEGORY PAGES STYLES
+           ============================================ */
+
+        .category-page {
+            min-height: 100vh;
+            background: var(--dark);
+        }
+
+        .category-hero {
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .banners-hero::before {
+            background: var(--gradient1);
+            opacity: 0.3;
+        }
+
+        .stickers-hero::before {
+            background: var(--gradient2);
+            opacity: 0.3;
+        }
+
+        .cards-hero::before {
+            background: var(--gradient3);
+            opacity: 0.3;
+        }
+
+        .gifts-hero::before {
+            background: var(--gradient4);
+            opacity: 0.3;
+        }
+
+        .category-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .category-hero-content i {
+            font-size: 80px;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .banners-hero i { color: #667eea; }
+        .stickers-hero i { color: #f5576c; }
+        .cards-hero i { color: #4facfe; }
+        .gifts-hero i { color: #43e97b; }
+
+        .category-hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            color: var(--light);
+            margin-bottom: 20px;
+        }
+
+        .category-hero-content p {
+            color: #b0b0b0;
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 100px;
+            left: 50px;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .back-btn:hover {
+            background: var(--gradient2);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 100px 50px;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .gallery-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: var(--light);
+            margin-bottom: 15px;
+        }
+
+        .gallery-header p {
+            color: #888;
+            font-size: 16px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            background: linear-gradient(145deg, #2a2a4a, #1a1a2e);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-image {
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item:nth-child(1) .gallery-image { background: linear-gradient(135deg, #667eea33, #764ba233); }
+        .gallery-item:nth-child(2) .gallery-image { background: linear-gradient(135deg, #f093fb33, #f5576c33); }
+        .gallery-item:nth-child(3) .gallery-image { background: linear-gradient(135deg, #4facfe33, #00f2fe33); }
+        .gallery-item:nth-child(4) .gallery-image { background: linear-gradient(135deg, #43e97b33, #38f9d733); }
+        .gallery-item:nth-child(5) .gallery-image { background: linear-gradient(135deg, #fa709a33, #fee14033); }
+        .gallery-item:nth-child(6) .gallery-image { background: linear-gradient(135deg, #a18cd133, #fbc2eb33); }
+
+        .gallery-image::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+        }
+
+        .gallery-info {
+            padding: 25px;
+        }
+
+        .gallery-info h3 {
+            font-size: 20px;
+            color: var(--light);
+            margin-bottom: 10px;
+        }
+
+        .gallery-info p {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .gallery-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .order-btn {
+            padding: 12px 25px;
+            background: var(--gradient2);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .order-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+        }
+
+        /* Category CTA */
+        .category-cta {
+            padding: 80px 50px;
+            background: linear-gradient(135deg, #16162d 0%, var(--dark) 100%);
+            text-align: center;
+        }
+
+        .category-cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: var(--light);
+            margin-bottom: 20px;
+        }
+
+        .category-cta p {
+            color: #888;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .category-cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* ============================================
+           NEW STUNNING FOOTER STYLES
+           ============================================ */
+
+        .new-footer {
+            background: linear-gradient(180deg, #0a0a1a 0%, #0d0d1f 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .new-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .footer-wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .footer-wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 80px;
+        }
+
+        .footer-wave .shape-fill {
+            fill: var(--dark);
+        }
+
+        .footer-top {
+            padding: 100px 50px 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Brand Column */
+        .footer-brand {
+            padding-right: 30px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .footer-logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient2);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.3);
+        }
+
+        .footer-logo-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--light);
+            margin-bottom: 2px;
+        }
+
+        .footer-logo-text span {
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .footer-brand > p {
+            color: #888;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #888;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            transform: translateY(-5px);
+            border-color: transparent;
+        }
+
+        .footer-social a:nth-child(1):hover {
+            background: #1877f2;
+            color: white;
+            box-shadow: 0 10px 30px rgba(24, 119, 242, 0.4);
+        }
+
+        .footer-social a:nth-child(2):hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+            box-shadow: 0 10px 30px rgba(225, 48, 108, 0.4);
+        }
+
+        .footer-social a:nth-child(3):hover {
+            background: #1da1f2;
+            color: white;
+            box-shadow: 0 10px 30px rgba(29, 161, 242, 0.4);
+        }
+
+        .footer-social a:nth-child(4):hover {
+            background: #25d366;
+            color: white;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Footer Columns */
+        .footer-column h4 {
+            font-size: 18px;
+            color: var(--light);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--gradient2);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .footer-links a i {
+            font-size: 12px;
+            color: var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--light);
+            padding-left: 5px;
+        }
+
+        .footer-links a:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Contact Column */
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .footer-contact-icon {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .footer-contact-item:nth-child(1) .footer-contact-icon {
+            color: #25d366;
+        }
+
+        .footer-contact-item:nth-child(2) .footer-contact-icon {
+            color: #4facfe;
+        }
+
+        .footer-contact-item:nth-child(3) .footer-contact-icon {
+            color: #f5576c;
+        }
+
+        .footer-contact-item:nth-child(4) .footer-contact-icon {
+            color: #43e97b;
+        }
+
+        .footer-contact-item:hover .footer-contact-icon {
+            background: var(--gradient2);
+            color: white;
+            border-color: transparent;
+            transform: scale(1.1);
+        }
+
+        .footer-contact-info h5 {
+            color: var(--light);
+            font-size: 14px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .footer-contact-info p {
+            color: #888;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .footer-contact-info a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-contact-info a:hover {
+            color: var(--accent);
+        }
+
+        /* Working Hours */
+        .working-hours {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .working-hours h5 {
+            color: var(--light);
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .working-hours h5 i {
+            color: var(--accent);
+        }
+
+        .working-hours ul {
+            list-style: none;
+        }
+
+        .working-hours li {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .working-hours li span:last-child {
+            color: var(--accent);
+        }
+
+        /* Newsletter Section */
+        .footer-newsletter {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-content h4 {
+            font-size: 24px;
+            color: var(--light);
+            margin-bottom: 10px;
+        }
+
+        .newsletter-content p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+        }
+
+        .newsletter-form input {
+            padding: 15px 25px;
+            width: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            color: var(--light);
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #666;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .newsletter-form button {
+            padding: 15px 35px;
+            background: var(--gradient2);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(245, 87, 108, 0.4);
+        }
+
+        /* Footer Bottom */
+        .footer-bottom-bar {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 25px 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-bottom-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-bottom-content p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .footer-bottom-content > p a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-bottom-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--light);
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .payment-methods span {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .payment-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .payment-icons i {
+            font-size: 28px;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .payment-icons i:hover {
+            color: var(--light);
+        }
+
+        /* Quick Contact Floating Bar */
+        .quick-contact-bar {
+            background: var(--gradient2);
+            padding: 15px 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quick-contact-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .quick-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .quick-contact-item:hover {
+            transform: scale(1.05);
+        }
+
+        .quick-contact-item i {
+            font-size: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-slideshow {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-main {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-newsletter {
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+                padding: 30px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .newsletter-form input {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links, .nav-contact {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-text h1 {
+                font-size: 42px;
+            }
+
+            .hero-content {
+                padding: 0 20px;
+            }
+
+            .services {
+                padding: 80px 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 36px;
+            }
+
+            .stats {
+                padding: 60px 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .cta {
+                padding: 80px 20px;
+            }
+
+            .cta h2 {
+                font-size: 32px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .slide-arrows {
+                display: none;
+            }
+
+            .category-hero-content h1 {
+                font-size: 42px;
+            }
+
+            .gallery-section {
+                padding: 60px 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .back-btn {
+                top: 80px;
+                left: 20px;
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .footer-top {
+                padding: 80px 20px 40px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-brand {
+                padding-right: 0;
+                text-align: center;
+            }
+
+            .footer-logo {
+                justify-content: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .footer-column h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-column {
+                text-align: center;
+            }
+
+            .footer-links a {
+                justify-content: center;
+            }
+
+            .footer-contact-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-newsletter {
+                margin: 0 20px 40px;
+            }
+
+            .footer-bottom-bar {
+                padding: 20px;
+            }
+
+            .footer-bottom-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-bottom-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .quick-contact-bar {
+                padding: 15px 20px;
+            }
+
+            .quick-contact-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .working-hours {
+                text-align: left;
+            }
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.98);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu-content {
+            text-align: center;
+        }
+
+        .mobile-menu-content a {
+            display: block;
+            font-size: 24px;
+            color: var(--light);
+            text-decoration: none;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+
+        .mobile-menu-content a:hover {
+            color: var(--accent);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/971503250732" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo" onclick="showPage('home')">
+            <div class="logo-icon">
+                <i class="fas fa-palette"></i>
+            </div>
+            <div class="logo-text">
+                <h1>Color & Ideas</h1>
+                <span>For Advertising</span>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a onclick="showPage('home')">Home</a></li>
+            <li><a onclick="showPage('banners')">Banners</a></li>
+            <li><a onclick="showPage('stickers')">Stickers</a></li>
+            <li><a onclick="showPage('cards')">Business Cards</a></li>
+            <li><a onclick="showPage('gifts')">Gifts</a></li>
+        </ul>
+        <div class="nav-contact">
+            <a href="tel:0503250732" class="nav-btn btn-call">
+                <i class="fas fa-phone"></i>
+                Call Us
+            </a>
+            <a href="https://wa.me/971503250732" class="nav-btn btn-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                WhatsApp
+            </a>
+        </div>
+        <div class="hamburger" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <span class="close-menu" onclick="toggleMobileMenu()">&times;</span>
+        <div class="mobile-menu-content">
+            <a onclick="showPage('home'); toggleMobileMenu()">Home</a>
+            <a onclick="showPage('banners'); toggleMobileMenu()">Banners</a>
+            <a onclick="showPage('stickers'); toggleMobileMenu()">Stickers</a>
+            <a onclick="showPage('cards'); toggleMobileMenu()">Business Cards</a>
+            <a onclick="showPage('gifts'); toggleMobileMenu()">Gifts</a>
+            <a href="tel:0503250732"><i class="fas fa-phone"></i> Call: 0503250732</a>
+            <a href="https://wa.me/971503250732" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- ============================================
+         HOME PAGE
+         ============================================ -->
+    <div class="page active" id="home">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg">
+                <div class="animated-bg">
+                    <div class="floating-shape shape1"></div>
+                    <div class="floating-shape shape2"></div>
+                    <div class="floating-shape shape3"></div>
+                </div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Welcome to</h2>
+                    <h1>Color & Ideas<br><span>For Advertising</span></h1>
+                    <p>Transform your brand with stunning visual designs. From eye-catching banners to premium business cards, we bring your creative vision to life with precision and passion.</p>
+                    <div class="hero-buttons">
+                        <a href="https://wa.me/971503250732" class="hero-btn btn-primary" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            Order Now
+                        </a>
+                        <a href="tel:0503250732" class="hero-btn btn-secondary">
+                            <i class="fas fa-phone"></i>
+                            Call Us
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-slideshow">
+                    <div class="slide-container">
+                        <!-- Slide 1 - Banners -->
+                        <div class="slide active" onclick="showPage('banners')">
+                            <div class="slide-card">
+                                <div class="slide-image">
+                                    <i class="fas fa-flag" style="color: #667eea;"></i>
+                                </div>
+                                <div class="slide-info">
+                                    <h3>Professional Banners</h3>
+                                    <p>Indoor & Outdoor advertising solutions</p>
+                                    <button class="view-designs-btn">View Designs <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 2 - Stickers -->
+                        <div class="slide" onclick="showPage('stickers')">
+                            <div class="slide-card">
+                                <div class="slide-image">
+                                    <i class="fas fa-sticky-note" style="color: #f5576c;"></i>
+                                </div>
+                                <div class="slide-info">
+                                    <h3>Creative Stickers</h3>
+                                    <p>Custom stickers for every purpose</p>
+                                    <button class="view-designs-btn">View Designs <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 3 - Business Cards -->
+                        <div class="slide" onclick="showPage('cards')">
+                            <div class="slide-card">
+                                <div class="slide-image">
+                                    <i class="fas fa-id-card" style="color: #4facfe;"></i>
+                                </div>
+                                <div class="slide-info">
+                                    <h3>Business Cards</h3>
+                                    <p>Premium quality visiting cards</p>
+                                    <button class="view-designs-btn">View Designs <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 4 - Gifts -->
+                        <div class="slide" onclick="showPage('gifts')">
+                            <div class="slide-card">
+                                <div class="slide-image">
+                                    <i class="fas fa-gift" style="color: #43e97b;"></i>
+                                </div>
+                                <div class="slide-info">
+                                    <h3>Custom Gifts</h3>
+                                    <p>Personalized corporate gifts</p>
+                                    <button class="view-designs-btn">View Designs <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-arrows">
+                        <button class="slide-arrow arrow-left" onclick="event.stopPropagation(); changeSlide(-1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slide-arrow arrow-right" onclick="event.stopPropagation(); changeSlide(1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="slide-nav">
+                        <div class="slide-dot active" onclick="event.stopPropagation(); goToSlide(0)"></div>
+                        <div class="slide-dot" onclick="event.stopPropagation(); goToSlide(1)"></div>
+                        <div class="slide-dot" onclick="event.stopPropagation(); goToSlide(2)"></div>
+                        <div class="slide-dot" onclick="event.stopPropagation(); goToSlide(3)"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services">
+            <div class="section-header">
+                <h2>Our <span>Services</span></h2>
+                <p>We provide comprehensive advertising solutions to help your business stand out</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" onclick="showPage('banners')">
+                    <div class="service-icon">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3>Banners</h3>
+                    <p>High-quality indoor and outdoor banners for maximum visibility and brand impact.</p>
+                    <a class="service-link">View Designs <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card" onclick="showPage('stickers')">
+                    <div class="service-icon">
+                        <i class="fas fa-sticky-note"></i>
+                    </div>
+                    <h3>Stickers</h3>
+                    <p>Custom vinyl stickers, labels, and decals for any application you need.</p>
+                    <a class="service-link">View Designs <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card" onclick="showPage('cards')">
+                    <div class="service-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3>Business Cards</h3>
+                    <p>Professional business cards that make a lasting first impression.</p>
+                    <a class="service-link">View Designs <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card" onclick="showPage('gifts')">
+                    <div class="service-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Gifts</h3>
+                    <p>Personalized corporate gifts including mugs, t-shirts, and promotional items.</p>
+                    <a class="service-link">View Designs <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics -->
+        <section class="stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Happy Clients</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2000+</h3>
+                    <p>Projects Done</p>
+                </div>
+                <div class="stat-item">
+                    <h3>10+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Support</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="cta-content">
+                <h2>Ready to Bring Your Ideas to Life?</h2>
+                <p>Contact us today and let's create something amazing together. Quick response guaranteed!</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/971503250732" class="cta-btn cta-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp: 0503250732
+                    </a>
+                    <a href="tel:0503250732" class="cta-btn cta-call">
+                        <i class="fas fa-phone"></i>
+                        Call: 0503250732
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW STUNNING FOOTER -->
+        <footer class="new-footer">
+            <!-- Wave Shape -->
+            <div class="footer-wave">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+
+            <!-- Quick Contact Bar -->
+            <div class="quick-contact-bar">
+                <div class="quick-contact-content">
+                    <a href="tel:0503250732" class="quick-contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Call Us: 0503250732</span>
+                    </a>
+                    <a href="https://wa.me/971503250732" class="quick-contact-item" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp: 0503250732</span>
+                    </a>
+                    <a href="mailto:info@colorideas.ae" class="quick-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@colorideas.ae</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Top -->
+            <div class="footer-top">
+                <!-- Newsletter Section -->
+                <div class="footer-newsletter">
+                    <div class="newsletter-content">
+                        <h4>📩 Subscribe to Our Newsletter</h4>
+                        <p>Get updates on new designs and special offers!</p>
+                    </div>
+                    <form class="newsletter-form" onsubmit="return false;">
+                        <input type="email" placeholder="Enter your email address">
+                        <button type="submit">
+                            Subscribe <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Footer Main Content -->
+                <div class="footer-main">
+                    <!-- Brand Column -->
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <div class="footer-logo-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="footer-logo-text">
+                                <h3>Color & Ideas</h3>
+                                <span>For Advertising</span>
+                            </div>
+                        </div>
+                        <p>Your trusted partner for all advertising and printing needs. We combine creativity with quality to deliver exceptional results that help your business stand out and grow.</p>
+                        <div class="footer-social">
+                            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://wa.me/971503250732" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Services Column -->
+                    <div class="footer-column">
+                        <h4>Our Services</h4>
+                        <ul class="footer-links">
+                            <li><a onclick="showPage('banners')"><i class="fas fa-chevron-right"></i> Banners</a></li>
+                            <li><a onclick="showPage('stickers')"><i class="fas fa-chevron-right"></i> Stickers</a></li>
+                            <li><a onclick="showPage('cards')"><i class="fas fa-chevron-right"></i> Business Cards</a></li>
+                            <li><a onclick="showPage('gifts')"><i class="fas fa-chevron-right"></i> Corporate Gifts</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Signage</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Vehicle Wraps</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Quick Links Column -->
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a onclick="showPage('home')"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Column -->
+                    <div class="footer-column">
+                        <h4>Contact Info</h4>
+                        
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="footer-contact-info">
+                                <h5>WhatsApp</h5>
+                                <p><a href="https://wa.me/971503250732" target="_blank">0503250732</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="footer-contact-info">
+                                <h5>Call Us</h5>
+                                <p><a href="tel:0503250732">0503250732</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="footer-contact-info">
+                                <h5>Email</h5>
+                                <p><a href="mailto:info@colorideas.ae">info@colorideas.ae</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="footer-contact-info">
+                                <h5>Location</h5>
+                                <p>United Arab Emirates</p>
+                            </div>
+                        </div>
+
+                        <!-- Working Hours -->
+                        <div class="working-hours">
+                            <h5><i class="fas fa-clock"></i> Working Hours</h5>
+                            <ul>
+                                <li><span>Saturday - Thursday</span> <span>9:00 AM - 9:00 PM</span></li>
+                                <li><span>Friday</span> <span>2:00 PM - 9:00 PM</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom-bar">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 <a href="#">Color & Ideas For Advertising</a>. All Rights Reserved.</p>
+                    
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Sitemap</a>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <span>We Accept:</span>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-apple-pay"></i>
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================
+         BANNERS PAGE
+         ============================================ -->
+    <div class="page" id="banners">
+        <div class="category-page">
+            <button class="back-btn" onclick="showPage('home')">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+            
+            <section class="category-hero banners-hero">
+                <div class="category-hero-content">
+                    <i class="fas fa-flag"></i>
+                    <h1>Professional Banners</h1>
+                    <p>High-quality indoor and outdoor banners designed to maximize your brand visibility</p>
+                </div>
+            </section>
+
+            <section class="gallery-section">
+                <div class="gallery-header">
+                    <h2>Our Banner Designs</h2>
+                    <p>Choose from our collection or request a custom design</p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-store" style="color: #667eea;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Roll-Up Banners</h3>
+                            <p>Perfect for exhibitions, events, and retail displays. Easy to set up and transport.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 150</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Roll-Up Banners" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-building" style="color: #f5576c;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Building Banners</h3>
+                            <p>Large format banners for building facades and outdoor advertising.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 500</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Building Banners" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-ad" style="color: #4facfe;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Vinyl Banners</h3>
+                            <p>Durable vinyl banners suitable for both indoor and outdoor use.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 100</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Vinyl Banners" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-flag-checkered" style="color: #43e97b;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Feather Flags</h3>
+                            <p>Eye-catching feather banners for promotions and events.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 200</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Feather Flags" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-image" style="color: #fa709a;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Mesh Banners</h3>
+                            <p>Wind-resistant mesh banners for outdoor construction sites.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 180</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Mesh Banners" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-tent" style="color: #a18cd1;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Pop-Up Display</h3>
+                            <p>Professional backdrop displays for trade shows and events.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 800</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Pop-Up Display" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="category-cta">
+                <h2>Need a Custom Banner Design?</h2>
+                <p>Contact us now for personalized designs and competitive prices!</p>
+                <div class="category-cta-buttons">
+                    <a href="https://wa.me/971503250732?text=Hi! I need a custom banner design" class="cta-btn cta-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp: 0503250732
+                    </a>
+                    <a href="tel:0503250732" class="cta-btn cta-call">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                </div>
+            </section>
+
+            <!-- Footer for Banners Page -->
+            <footer class="new-footer">
+                <div class="footer-wave">
+                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                    </svg>
+                </div>
+                <div class="quick-contact-bar">
+                    <div class="quick-contact-content">
+                        <a href="tel:0503250732" class="quick-contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Call Us: 0503250732</span>
+                        </a>
+                        <a href="https://wa.me/971503250732" class="quick-contact-item" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp: 0503250732</span>
+                        </a>
+                        <a href="mailto:info@colorideas.ae" class="quick-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@colorideas.ae</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-top">
+                    <div class="footer-main">
+                        <div class="footer-brand">
+                            <div class="footer-logo">
+                                <div class="footer-logo-icon">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <div class="footer-logo-text">
+                                    <h3>Color & Ideas</h3>
+                                    <span>For Advertising</span>
+                                </div>
+                            </div>
+                            <p>Your trusted partner for all advertising and printing needs. We combine creativity with quality to deliver exceptional results.</p>
+                            <div class="footer-social">
+                                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://wa.me/971503250732" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Our Services</h4>
+                            <ul class="footer-links">
+                                <li><a onclick="showPage('banners')"><i class="fas fa-chevron-right"></i> Banners</a></li>
+                                <li><a onclick="showPage('stickers')"><i class="fas fa-chevron-right"></i> Stickers</a></li>
+                                <li><a onclick="showPage('cards')"><i class="fas fa-chevron-right"></i> Business Cards</a></li>
+                                <li><a onclick="showPage('gifts')"><i class="fas fa-chevron-right"></i> Corporate Gifts</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Quick Links</h4>
+                            <ul class="footer-links">
+                                <li><a onclick="showPage('home')"><i class="fas fa-chevron-right"></i> Home</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Contact Info</h4>
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon"><i class="fab fa-whatsapp"></i></div>
+                                <div class="footer-contact-info">
+                                    <h5>WhatsApp</h5>
+                                    <p><a href="https://wa.me/971503250732" target="_blank">0503250732</a></p>
+                                </div>
+                            </div>
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon"><i class="fas fa-phone-alt"></i></div>
+                                <div class="footer-contact-info">
+                                    <h5>Call Us</h5>
+                                    <p><a href="tel:0503250732">0503250732</a></p>
+                                </div>
+                            </div>
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="footer-contact-info">
+                                    <h5>Location</h5>
+                                    <p>United Arab Emirates</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom-bar">
+                    <div class="footer-bottom-content">
+                        <p>&copy; 2024 <a href="#">Color & Ideas For Advertising</a>. All Rights Reserved.</p>
+                        <div class="footer-bottom-links">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                        </div>
+                        <div class="payment-methods">
+                            <span>We Accept:</span>
+                            <div class="payment-icons">
+                                <i class="fab fa-cc-visa"></i>
+                                <i class="fab fa-cc-mastercard"></i>
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- ============================================
+         STICKERS PAGE
+         ============================================ -->
+    <div class="page" id="stickers">
+        <div class="category-page">
+            <button class="back-btn" onclick="showPage('home')">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+            
+            <section class="category-hero stickers-hero">
+                <div class="category-hero-content">
+                    <i class="fas fa-sticky-note"></i>
+                    <h1>Creative Stickers</h1>
+                    <p>Custom stickers and labels for branding, packaging, and promotional purposes</p>
+                </div>
+            </section>
+
+            <section class="gallery-section">
+                <div class="gallery-header">
+                    <h2>Our Sticker Collection</h2>
+                    <p>High-quality stickers for every need</p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-circle" style="color: #667eea;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Die-Cut Stickers</h3>
+                            <p>Custom shaped stickers cut to match your design perfectly.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 50</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Die-Cut Stickers" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-tags" style="color: #f5576c;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Product Labels</h3>
+                            <p>Professional labels for product packaging and branding.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 80</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Product Labels" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-car" style="color: #4facfe;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Vehicle Stickers</h3>
+                            <p>Durable vinyl stickers for cars, trucks, and fleet vehicles.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 200</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Vehicle Stickers" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-window-maximize" style="color: #43e97b;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Window Decals</h3>
+                            <p>Eye-catching window graphics for shops and offices.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 120</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Window Decals" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-walking" style="color: #fa709a;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Floor Stickers</h3>
+                            <p>Anti-slip floor graphics for wayfinding and promotions.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 150</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Floor Stickers" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-scroll" style="color: #a18cd1;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Bumper Stickers</h3>
+                            <p>Weather-resistant bumper stickers with custom designs.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 30</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Bumper Stickers" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="category-cta">
+                <h2>Need Custom Stickers?</h2>
+                <p>Contact us for personalized sticker designs!</p>
+                <div class="category-cta-buttons">
+                    <a href="https://wa.me/971503250732?text=Hi! I need custom stickers" class="cta-btn cta-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp: 0503250732
+                    </a>
+                    <a href="tel:0503250732" class="cta-btn cta-call">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                </div>
+            </section>
+
+            <!-- Footer for Stickers Page -->
+            <footer class="new-footer">
+                <div class="footer-wave">
+                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                    </svg>
+                </div>
+                <div class="quick-contact-bar">
+                    <div class="quick-contact-content">
+                        <a href="tel:0503250732" class="quick-contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Call Us: 0503250732</span>
+                        </a>
+                        <a href="https://wa.me/971503250732" class="quick-contact-item" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp: 0503250732</span>
+                        </a>
+                        <a href="mailto:info@colorideas.ae" class="quick-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@colorideas.ae</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-top">
+                    <div class="footer-main">
+                        <div class="footer-brand">
+                            <div class="footer-logo">
+                                <div class="footer-logo-icon">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <div class="footer-logo-text">
+                                    <h3>Color & Ideas</h3>
+                                    <span>For Advertising</span>
+                                </div>
+                            </div>
+                            <p>Your trusted partner for all advertising and printing needs. We combine creativity with quality to deliver exceptional results.</p>
+                            <div class="footer-social">
+                                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://wa.me/971503250732" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Our Services</h4>
+                            <ul class="footer-links">
+                                <li><a onclick="showPage('banners')"><i class="fas fa-chevron-right"></i> Banners</a></li>
+                                <li><a onclick="showPage('stickers')"><i class="fas fa-chevron-right"></i> Stickers</a></li>
+                                <li><a onclick="showPage('cards')"><i class="fas fa-chevron-right"></i> Business Cards</a></li>
+                                <li><a onclick="showPage('gifts')"><i class="fas fa-chevron-right"></i> Corporate Gifts</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Quick Links</h4>
+                            <ul class="footer-links">
+                                <li><a onclick="showPage('home')"><i class="fas fa-chevron-right"></i> Home</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Contact Info</h4>
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon"><i class="fab fa-whatsapp"></i></div>
+                                <div class="footer-contact-info">
+                                    <h5>WhatsApp</h5>
+                                    <p><a href="https://wa.me/971503250732" target="_blank">0503250732</a></p>
+                                </div>
+                            </div>
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon"><i class="fas fa-phone-alt"></i></div>
+                                <div class="footer-contact-info">
+                                    <h5>Call Us</h5>
+                                    <p><a href="tel:0503250732">0503250732</a></p>
+                                </div>
+                            </div>
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="footer-contact-info">
+                                    <h5>Location</h5>
+                                    <p>United Arab Emirates</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom-bar">
+                    <div class="footer-bottom-content">
+                        <p>&copy; 2024 <a href="#">Color & Ideas For Advertising</a>. All Rights Reserved.</p>
+                        <div class="footer-bottom-links">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                        </div>
+                        <div class="payment-methods">
+                            <span>We Accept:</span>
+                            <div class="payment-icons">
+                                <i class="fab fa-cc-visa"></i>
+                                <i class="fab fa-cc-mastercard"></i>
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- ============================================
+         BUSINESS CARDS PAGE
+         ============================================ -->
+    <div class="page" id="cards">
+        <div class="category-page">
+            <button class="back-btn" onclick="showPage('home')">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+            
+            <section class="category-hero cards-hero">
+                <div class="category-hero-content">
+                    <i class="fas fa-id-card"></i>
+                    <h1>Business Cards</h1>
+                    <p>Premium quality business cards that make a lasting first impression</p>
+                </div>
+            </section>
+
+            <section class="gallery-section">
+                <div class="gallery-header">
+                    <h2>Business Card Designs</h2>
+                    <p>Professional cards for every business type</p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-square" style="color: #667eea;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Standard Cards</h3>
+                            <p>Classic business cards with premium paper quality.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 80/100pcs</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Standard Business Cards" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-star" style="color: #f5576c;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Luxury Foil Cards</h3>
+                            <p>Gold or silver foil stamping for an elegant look.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 200/100pcs</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Luxury Foil Cards" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-layer-group" style="color: #4facfe;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Thick Premium Cards</h3>
+                            <p>Extra thick cardstock for a professional feel.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 150/100pcs</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Thick Premium Cards" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-palette" style="color: #43e97b;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Matte Finish Cards</h3>
+                            <p>Smooth matte finish with vibrant colors.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 100/100pcs</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Matte Finish Cards" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-sun" style="color: #fa709a;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Glossy UV Cards</h3>
+                            <p>High gloss UV coating for maximum visual impact.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 120/100pcs</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Glossy UV Cards" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-qrcode" style="color: #a18cd1;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>QR Code Cards</h3>
+                            <p>Modern cards with integrated QR codes.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 100/100pcs</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in QR Code Cards" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="category-cta">
+                <h2>Need Professional Business Cards?</h2>
+                <p>Get your custom business cards designed and printed today!</p>
+                <div class="category-cta-buttons">
+                    <a href="https://wa.me/971503250732?text=Hi! I need business cards" class="cta-btn cta-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp: 0503250732
+                    </a>
+                    <a href="tel:0503250732" class="cta-btn cta-call">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                </div>
+            </section>
+
+            <!-- Footer for Cards Page -->
+            <footer class="new-footer">
+                <div class="footer-wave">
+                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                    </svg>
+                </div>
+                <div class="quick-contact-bar">
+		                    <div class="quick-contact-content">
+                        <a href="tel:0503250732" class="quick-contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Call Us: 0503250732</span>
+                        </a>
+                        <a href="https://wa.me/971503250732" class="quick-contact-item" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp: 0503250732</span>
+                        </a>
+                        <a href="mailto:info@colorideas.ae" class="quick-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@colorideas.ae</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-top">
+                    <div class="footer-main">
+                        <div class="footer-brand">
+                            <div class="footer-logo">
+                                <div class="footer-logo-icon">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <div class="footer-logo-text">
+                                    <h3>Color & Ideas</h3>
+                                    <span>For Advertising</span>
+                                </div>
+                            </div>
+                            <p>Your trusted partner for all advertising and printing needs. We combine creativity with quality to deliver exceptional results.</p>
+                            <div class="footer-social">
+                                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://wa.me/971503250732" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Our Services</h4>
+                            <ul class="footer-links">
+                                <li><a onclick="showPage('banners')"><i class="fas fa-chevron-right"></i> Banners</a></li>
+                                <li><a onclick="showPage('stickers')"><i class="fas fa-chevron-right"></i> Stickers</a></li>
+                                <li><a onclick="showPage('cards')"><i class="fas fa-chevron-right"></i> Business Cards</a></li>
+                                <li><a onclick="showPage('gifts')"><i class="fas fa-chevron-right"></i> Corporate Gifts</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Quick Links</h4>
+                            <ul class="footer-links">
+                                <li><a onclick="showPage('home')"><i class="fas fa-chevron-right"></i> Home</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Contact Info</h4>
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon"><i class="fab fa-whatsapp"></i></div>
+                                <div class="footer-contact-info">
+                                    <h5>WhatsApp</h5>
+                                    <p><a href="https://wa.me/971503250732" target="_blank">0503250732</a></p>
+                                </div>
+                            </div>
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon"><i class="fas fa-phone-alt"></i></div>
+                                <div class="footer-contact-info">
+                                    <h5>Call Us</h5>
+                                    <p><a href="tel:0503250732">0503250732</a></p>
+                                </div>
+                            </div>
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="footer-contact-info">
+                                    <h5>Location</h5>
+                                    <p>United Arab Emirates</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom-bar">
+                    <div class="footer-bottom-content">
+                        <p>&copy; 2024 <a href="#">Color & Ideas For Advertising</a>. All Rights Reserved.</p>
+                        <div class="footer-bottom-links">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                        </div>
+                        <div class="payment-methods">
+                            <span>We Accept:</span>
+                            <div class="payment-icons">
+                                <i class="fab fa-cc-visa"></i>
+                                <i class="fab fa-cc-mastercard"></i>
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- ============================================
+         GIFTS PAGE
+         ============================================ -->
+    <div class="page" id="gifts">
+        <div class="category-page">
+            <button class="back-btn" onclick="showPage('home')">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+            
+            <section class="category-hero gifts-hero">
+                <div class="category-hero-content">
+                    <i class="fas fa-gift"></i>
+                    <h1>Custom Gifts</h1>
+                    <p>Personalized promotional gifts and corporate merchandise</p>
+                </div>
+            </section>
+
+            <section class="gallery-section">
+                <div class="gallery-header">
+                    <h2>Our Gift Products</h2>
+                    <p>Perfect for corporate gifting and promotions</p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-mug-hot" style="color: #667eea;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Custom Mugs</h3>
+                            <p>Personalized ceramic mugs with your logo or design.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 25/pc</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Custom Mugs" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-tshirt" style="color: #f5576c;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Printed T-Shirts</h3>
+                            <p>Custom printed t-shirts for teams and events.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 35/pc</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Printed T-Shirts" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-pen" style="color: #4facfe;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Branded Pens</h3>
+                            <p>Quality pens with your company branding.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 3/pc</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Branded Pens" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-shopping-bag" style="color: #43e97b;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Tote Bags</h3>
+                            <p>Eco-friendly custom printed tote bags.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 15/pc</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Tote Bags" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-key" style="color: #fa709a;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Keychains</h3>
+                            <p>Custom keychains in various materials.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 5/pc</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Keychains" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <i class="fas fa-hat-cowboy" style="color: #a18cd1;"></i>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Custom Caps</h3>
+                            <p>Embroidered or printed caps with your logo.</p>
+                            <div class="gallery-meta">
+                                <span class="price">From AED 20/pc</span>
+                                <a href="https://wa.me/971503250732?text=Hi! I'm interested in Custom Caps" class="order-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Order
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="category-cta">
+                <h2>Need Corporate Gifts?</h2>
+                <p>Contact us for bulk orders and custom promotional items!</p>
+                <div class="category-cta-buttons">
+                    <a href="https://wa.me/971503250732?text=Hi! I need corporate gifts" class="cta-btn cta-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp: 0503250732
+                    </a>
+                    <a href="tel:0503250732" class="cta-btn cta-call">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                </div>
+            </section>
+
+            <!-- Footer for Gifts Page -->
+            <footer class="new-footer">
+                <div class="footer-wave">
+                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                    </svg>
+                </div>
+                <div class="quick-contact-bar">
+                    <div class="quick-contact-content">
+                        <a href="tel:0503250732" class="quick-contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Call Us: 0503250732</span>
+                        </a>
+                        <a href="https://wa.me/971503250732" class="quick-contact-item" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp: 0503250732</span>
+                        </a>
+                        <a href="mailto:info@colorideas.ae" class="quick-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@colorideas.ae</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-top">
+                    <div class="footer-main">
+                        <div class="footer-brand">
+                            <div class="footer-logo">
+                                <div class="footer-logo-icon">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <div class="footer-logo-text">
+                                    <h3>Color & Ideas</h3>
+                                    <span>For Advertising</span>
+                                </div>
+                            </div>
+                            <p>Your trusted partner for all advertising and printing needs. We combine creativity with quality to deliver exceptional results.</p>
+                            <div class="footer-social">
+                                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://wa.me/971503250732" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Our Services</h4>
+                            <ul class="footer-links">
+                                <li><a onclick="showPage('banners')"><i class="fas fa-chevron-right"></i> Banners</a></li>
+                                <li><a onclick="showPage('stickers')"><i class="fas fa-chevron-right"></i> Stickers</a></li>
+                                <li><a onclick="showPage('cards')"><i class="fas fa-chevron-right"></i> Business Cards</a></li>
+                                <li><a onclick="showPage('gifts')"><i class="fas fa-chevron-right"></i> Corporate Gifts</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Quick Links</h4>
+                            <ul class="footer-links">
+                                <li><a onclick="showPage('home')"><i class="fas fa-chevron-right"></i> Home</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Contact Info</h4>
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon"><i class="fab fa-whatsapp"></i></div>
+                                <div class="footer-contact-info">
+                                    <h5>WhatsApp</h5>
+                                    <p><a href="https://wa.me/971503250732" target="_blank">0503250732</a></p>
+                                </div>
+                            </div>
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon"><i class="fas fa-phone-alt"></i></div>
+                                <div class="footer-contact-info">
+                                    <h5>Call Us</h5>
+                                    <p><a href="tel:0503250732">0503250732</a></p>
+                                </div>
+                            </div>
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="footer-contact-info">
+                                    <h5>Location</h5>
+                                    <p>United Arab Emirates</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom-bar">
+                    <div class="footer-bottom-content">
+                        <p>&copy; 2024 <a href="#">Color & Ideas For Advertising</a>. All Rights Reserved.</p>
+                        <div class="footer-bottom-links">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                        </div>
+                        <div class="payment-methods">
+                            <span>We Accept:</span>
+                            <div class="payment-icons">
+                                <i class="fab fa-cc-visa"></i>
+                                <i class="fab fa-cc-mastercard"></i>
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.preloader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Mobile Menu
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        // Slideshow
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slide-dot');
+
+        function showSlide(index) {
+            if (index >= slides.length) currentSlide = 0;
+            if (index < 0) currentSlide = slides.length - 1;
+            
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance slideshow
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // Initialize
+        showSlide(0);
+
+        // Counter Animation for Statistics
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-item h3');
+            
+            counters.forEach(counter => {
+                const target = counter.innerText;
+                const isNumber = !isNaN(parseInt(target));
+                
+                if (isNumber) {
+                    const num = parseInt(target);
+                    let current = 0;
+                    const increment = num / 50;
+                    
+                    const updateCounter = () => {
+                        if (current < num) {
+                            current += increment;
+                            counter.innerText = Math.ceil(current) + '+';
+                            setTimeout(updateCounter, 30);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    
+                    updateCounter();
+                }
+            });
+        }
+
+        // Trigger counter animation when stats section is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Add animation on scroll for gallery items
+        const galleryObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'all 0.6s ease';
+            galleryObserver.observe(item);
+        });
+
+        // Add animation on scroll for service cards
+        const serviceObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 150);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+            serviceObserver.observe(card);
+        });
+
+        // Newsletter form submission
+        document.querySelectorAll('.newsletter-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                if (email) {
+                    alert('Thank you for subscribing! We will send updates to: ' + email);
+                    this.querySelector('input[type="email"]').value = '';
+                }
+            });
+        });
+
+        // Add ripple effect to buttons
+        document.querySelectorAll('.order-btn, .cta-btn, .hero-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Parallax effect for hero shapes
+        window.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.floating-shape');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 20;
+                const xOffset = (x - 0.5) * speed;
+                const yOffset = (y - 0.5) * speed;
+                shape.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+        });
+
+        // Console welcome message
+        console.log('%c🎨 Color & Ideas For Advertising', 'font-size: 24px; font-weight: bold; color: #f5576c;');
+        console.log('%cWelcome to our website! Contact us at 0503250732', 'font-size: 14px; color: #667eea;');
+    </script>
+</body>
+</html>
